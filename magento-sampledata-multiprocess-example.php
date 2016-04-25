@@ -1,4 +1,7 @@
 <?php
+
+error_reporting(E_ERROR);
+
 /**
  * The following code is a complete example of using phpcrawl with multi processes.
  *
@@ -49,23 +52,38 @@ class MyCrawler extends PHPCrawler
 $crawler = new MyCrawler();
 
 // URL to crawl (the entry-page of the mysql-documentation on php.net)
-$crawler->setURL("http://php.net/manual/en/book.mysql.php");
+$crawler->setURL("http://m2.magento.loc/");
 
 // Only receive content of documents with content-type "text/html"
 $crawler->addReceiveContentType("#text/html#");
 
 // Ignore links to pictures, css-documents etc (prefilter)
 $crawler->addURLFilterRule("#\.(jpg|gif|png|pdf|jpeg|css|js)$# i");
-
-// Every URL within the mysql-documentation looks like 
-// "http://php.net/manual/en/function.mysql-affected-rows.php"
-// or "http://php.net/manual/en/mysql.setup.php", they all contain
-// "http://php.net/manual/en/" followed by  "mysql" somewhere.
-// So we add a corresponding follow-rule to the crawler.
-$crawler->addURLFollowRule("#^http://php.net/manual/en/.*mysql[^a-z]# i");
+$crawler->addURLFilterRule("#customer# i");
+$crawler->addURLFilterRule("#checkout# i");
+$crawler->addURLFilterRule("#search# i");
+$crawler->addURLFilterRule("#color=# i");
+$crawler->addURLFilterRule("#material=# i");
+$crawler->addURLFilterRule("#price=# i");
+$crawler->addURLFilterRUle("#pattern=# i");
+$crawler->addURLFilterRUle("#climate=# i");
+$crawler->addURLFilterRUle("#style_general=# i");
+$crawler->addURLFilterRUle("#size=# i");
+$crawler->addURLFilterRUle("#cat=# i");
+$crawler->addURLFilterRUle("#media# i");
+$crawler->addURLFilterRUle("#static# i");
+$crawler->addURLFilterRUle("#style_bottom=# i");
+$crawler->addURLFilterRUle("#activity=# i");
+$crawler->addURLFilterRUle("#features_bags=# i");
+$crawler->addURLFilterRUle("#strap_bags=# i");
+$crawler->addURLFilterRUle("#style_bags=# i");
+$crawler->addURLFilterRUle("#sendfriend# i");
+$crawler->addURLFilterRUle("#review# i");
+$crawler->addURLFilterRUle("#category_gear=# i");
+$crawler->addURLFilterRUle("#gender=# i");
 
 // That's it, start crawling using 5 processes
-$crawler->goMultiProcessed(5);
+$crawler->goMultiProcessed(4);
 
 // At the end, after the process is finished, we print a short
 // report (see method getReport() for more information)
