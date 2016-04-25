@@ -82,6 +82,14 @@ $crawler->addURLFilterRUle("#review# i");
 $crawler->addURLFilterRUle("#category_gear=# i");
 $crawler->addURLFilterRUle("#gender=# i");
 
+// Store and send cookie-data like a browser does
+$crawler->enableCookieHandling(true);
+
+// Set the traffic-limit to 1 MB (in bytes,
+// for testing we dont want to "suck" the whole site)
+$crawler->setTrafficLimit(1000000 * 1024);
+
+
 // That's it, start crawling using 5 processes
 $crawler->goMultiProcessed(4);
 
